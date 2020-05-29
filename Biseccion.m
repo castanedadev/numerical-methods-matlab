@@ -1,11 +1,11 @@
 syms x
+disp('Metodo de biseccion');
 
 % datos de entrada
 equation = input('Ingrese la ecuacion de trabajo [f(x)=0]: ');
 a = input('Ingrese el valor a: ');
 b = input('Ingrese el valor b: ');
-er = input('Ingrese el valor de la precision del error 10e: ');
-decimales = input('Ingrese el numero de decimales a utilizar: ');
+er = input('Ingrese el valor de la precision del error: 10e');
 
 % calculos iniciales
 er = 10^er;
@@ -43,7 +43,7 @@ if fxa * fxb < 0
         end
         
         fxi = subs(equation, pi);
-        iteration = iteration + 1;        
+        iteration = iteration + 1;
         
         % Imprimiendo linea por linea el contenido de la matriz
         fprintf('%d  || ', double(iteration));
