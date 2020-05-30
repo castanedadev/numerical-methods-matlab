@@ -1,14 +1,14 @@
 syms x
-disp('Metodo de biseccion');
+disp('Metodo de Newton Raphson');
 
 % datos de entrada
-equation = input('Ingrese la ecuacion de trabajo [g(x)=x]: ');
+equation = input('Ingrese la ecuacion de trabajo [f(x)=0]: ');
 p0 = input('Ingrese el valor inicial: ');
 er = input('Ingrese el valor de la precision del error: 10e');
 
 % calculos iniciales
 error = 10^er;
-p = subs(equation, p0);
+p = p0 - subs(equation, p0)/subs(diff(equation),p0);
 error_aproximacion = abs(p-p0);
 iteration = 1;
 
@@ -16,22 +16,22 @@ iteration = 1;
 fprintf('\n # \t\t\t\t p0 \t\t\t\t\t p \t\t\t error \n');
 fprintf('====================================');
 fprintf('====================================\n');
-fprintf('%d  || ', double(iteration));
-fprintf('%9.15f || ', double(p0));
-fprintf('%9.15f || ', double(p));
-fprintf('%9.15e ||\n', double(error_aproximacion));
+PrintContentLine(iteration, 'id');
+PrintContentLine(p0, 'variable');
+PrintContentLine(p, 'variable');
+PrintContentLine(error_aproximacion, 'error');
 
 while error_aproximacion > error
-    p0 = p;
-    p = subs(equation, p0);
-    error_aproximacion = abs(p-p0);    
+    p0 = p; % asignando nuevo valor inicial
+    p = p0 - subs(equation, p0)/subs(diff(equation),p0);
+    error_aproximacion = abs(p-p0);
     iteration = iteration + 1;
     
     % Imprimiendo linea por linea el contenido de la matriz
-    fprintf('%d  || ', double(iteration));
-    fprintf('%9.15f || ', double(p0));
-    fprintf('%9.15f || ', double(p));
-    fprintf('%9.15e ||\n', double(error_aproximacion));
+    PrintContentLine(iteration, 'id');
+    PrintContentLine(p0, 'variable');
+    PrintContentLine(p, 'variable');
+    PrintContentLine(error_aproximacion, 'error');
 end
 
 fprintf('====================================');
