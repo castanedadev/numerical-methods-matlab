@@ -24,6 +24,7 @@ PrintContentLine(p1, 'variable');
 PrintContentLine(p2, 'variable');
 PrintContentLine(p0_mejorado, 'variable');
 PrintContentLine(error_aproximacion, 'error');
+
 while error_aproximacion > error
     % reasignando valores iniciales
     p0 = p0_mejorado;
